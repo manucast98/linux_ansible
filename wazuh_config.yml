@@ -1,15 +1,13 @@
 ---
 - name: Configuracion de Wazuh para monitoreo de comandos
   hosts: all
-  vars:
-    export: export PROMPT_COMMAND='RETRN_VAL=$?;logger -t LinuxCommandsWazuh -p local6.debug "User $(whoami) [$$]: $(history 1 | sed "s/^[ ]*[0–9]\+[ ]*//" )"'
   become: false
   gather_facts: true
   tasks:
     - name: Add a line to a file if the file does not exist, without passing regexp
       ansible.builtin.lineinfile:
         path: /tmp/testfile
-        line: {{ export }}
+        line: export PROMPT_COMMAND='RETRN_VAL=$?;logger -t LinuxCommandsWazuh -p local6.debug "User $(whoami) [$$]= $(history 1 | sed "s/^[ ]*[0–9]\+[ ]*//" )"'
         create: no
         
       
