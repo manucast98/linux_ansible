@@ -4,28 +4,28 @@
   become: yes
   gather_facts: true
   tasks:
-    - name: Add a line to a file if the file does not exist, without passing regexp
+    - name: añadir linea al archivo /etc/bash.bashrc
       ansible.builtin.lineinfile:
         path: /etc/bash.bashrc
         line: export PROMPT_COMMAND='RETRN_VAL=$?;logger -t LinuxCommandsWazuh -p local6.debug "User $(whoami) [$$]= $(history 1 | sed "s/^[ ]*[0–9]\+[ ]*//" )"'
         create: no
 
-    - name: Add a line to a file if the file does not exist, without passing regexp
+    - name: creamos archivo /etc/rsyslog.d/bash.conf y añadimos linea
       ansible.builtin.lineinfile:
         path: /etc/rsyslog.d/bash.conf
         line: local6.* /var/log/commands
         create: yes
         
-    - name: Replace a localhost entry searching for a literal string to avoid escaping
+    - name: Comentamos linea en el archivo /etc/rsyslog.d/50-default.conf
       ansible.builtin.command: sed -i 's/*.*;auth,authpriv.none/#*.*;auth,authpriv.none/g' /etc/rsyslog.d/50-default.conf
 
-    - name: Replace a localhost entry searching for a literal string to avoid escaping
+    - name: agregamos linea en el archivo /etc/rsyslog.d/50-default.conf
       ansible.builtin.lineinfile:
         path: /etc/rsyslog.d/50-default.conf
         line: "*.*;auth,authpriv.none,local6.none -/var/log/syslog"
         create: no
         
-    - name: Run expect to wait for a successful PXE boot via out-of-band CIMC
+    - name: comentamos lineas en el archivo /etc/rsyslog.conf
       ansible.builtin.shell: |
         sed -i 's/$FileOwner/#$FileOwner/g' /etc/rsyslog.conf
         sed -i 's/$FileGroup/#$FileGroup/g' /etc/rsyslog.conf
@@ -35,7 +35,7 @@
         sed -i 's/$PrivDropToUser/#$PrivDropToUse/g' /etc/rsyslog.conf
         sed -i 's/$PrivDropToGroup/#$PrivDropToGroup/g' /etc/rsyslog.conf
   
-    - name: Replace a localhost entry searching for a literal string to avoid escaping
+    - name: reiniciamos servicio rsyslog
       ansible.builtin.command: systemctl restart rsyslog
 
     
