@@ -19,7 +19,7 @@
     - name: Replace a localhost entry searching for a literal string to avoid escaping
       ansible.builtin.lineinfile:
         path: /etc/rsyslog.d/50-default.conf
-        search_string: '*.*;auth,authpriv.none -/var/log/syslog'
+        search_string: '*.*;auth,authpriv.none'
         line: '*.*;auth,authpriv.none,local6.none -/var/log/syslog'
       
      
