@@ -8,5 +8,5 @@
       ansible.builtin.lineinfile:
         path: /tmp/testfile
         line: 192.168.1.99 foo.lab.net foo
-        create: yes
+        create: no
      
