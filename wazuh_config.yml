@@ -36,7 +36,7 @@
         sed -i 's/$PrivDropToGroup/#$PrivDropToGroup/g'
   
     - name: Replace a localhost entry searching for a literal string to avoid escaping
-       ansible.builtin.command: systemctl restart rsyslog
+      ansible.builtin.command: systemctl restart rsyslog
 
     
       
