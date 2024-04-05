@@ -5,14 +5,21 @@
   gather_facts: true
   tasks:
     - name: Add a line to a file if the file does not exist, without passing regexp
-      ansible.builtin.command: echo export PROMPT_COMMAND='RETRN_VAL=$?;logger -t LinuxCommandsWazuh -p local6.debug "User $(whoami) [$$]= $(history 1 | sed "s/^[ ]*[0–9]\+[ ]*//" )"' >> /etc/bash.bashrc
-      become: yes
+      ansible.builtin.lineinfile:
+        path: /etc/bash.bashrc
+        line: export PROMPT_COMMAND='RETRN_VAL=$?;logger -t LinuxCommandsWazuh -p local6.debug "User $(whoami) [$$]= $(history 1 | sed "s/^[ ]*[0–9]\+[ ]*//" )"'
+        create: no
 
     - name: Add a line to a file if the file does not exist, without passing regexp
       ansible.builtin.lineinfile:
         path: /etc/rsyslog.d/bash.conf
         line: local6.* /var/log/commands
         create: yes
-        
+
+    - name: Replace a localhost entry searching for a literal string to avoid escaping
+      ansible.builtin.lineinfile:
+        path: /etc/hosts
+        search_string: '1*.*;auth,authpriv.none -/var/log/syslog'
+        line: *.*;auth,authpriv.none,local6.none -/var/log/syslog
       
      
