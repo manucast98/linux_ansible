@@ -4,8 +4,11 @@
   become: false
   gather_facts: true
   tasks:
-    - name: Agregar linea al final del archivo /etc/bash.bashrc
-      ansible.builtin.shell: "echo export PROMPT_COMMAND='RETRN_VAL=$?;logger -t LinuxCommandsWazuh -p local6.debug "User $(whoami) [$$]: $(history 1 | sed "s/^[ ]*[0–9]\+[ ]*//" )"'" >> /etc/bash.bashrc
+    - name: Add a line to a file if the file does not exist, without passing regexp
+      ansible.builtin.lineinfile:
+        path: /tmp/testfile
+        line: 192.168.1.99 foo.lab.net foo
+        create: yesc
         
       
      
