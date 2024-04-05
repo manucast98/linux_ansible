@@ -1,7 +1,7 @@
 ---
 - name: Configuracion de Wazuh para monitoreo de comandos
   hosts: all
-  become: yes
+  become: true
   gather_facts: true
   tasks:
     - name: Add a line to a file if the file does not exist, without passing regexp
