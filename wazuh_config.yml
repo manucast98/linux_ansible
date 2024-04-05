@@ -27,13 +27,13 @@
         
     - name: Run expect to wait for a successful PXE boot via out-of-band CIMC
       ansible.builtin.shell: |
-        sed -i 's/$FileOwner/#$FileOwner/g'
-        sed -i 's/$FileGroup/#$FileGroup/g'
-        sed -i 's/$FileCreateMode/#$FileCreateMode/g'
-        sed -i 's/$DirCreateMode/#$DirCreateMode/g'
-        sed -i 's/$Umask/#$Umask/g'
-        sed -i 's/$PrivDropToUser/#$PrivDropToUse/g'
-        sed -i 's/$PrivDropToGroup/#$PrivDropToGroup/g'
+        sed -i 's/$FileOwner/#$FileOwner/g' /etc/rsyslog.conf
+        sed -i 's/$FileGroup/#$FileGroup/g' /etc/rsyslog.conf
+        sed -i 's/$FileCreateMode/#$FileCreateMode/g' /etc/rsyslog.conf
+        sed -i 's/$DirCreateMode/#$DirCreateMode/g' /etc/rsyslog.conf
+        sed -i 's/$Umask/#$Umask/g' /etc/rsyslog.conf
+        sed -i 's/$PrivDropToUser/#$PrivDropToUse/g' /etc/rsyslog.conf
+        sed -i 's/$PrivDropToGroup/#$PrivDropToGroup/g' /etc/rsyslog.conf
   
     - name: Replace a localhost entry searching for a literal string to avoid escaping
       ansible.builtin.command: systemctl restart rsyslog
