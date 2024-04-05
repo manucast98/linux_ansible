@@ -24,6 +24,19 @@
         path: /etc/rsyslog.d/50-default.conf
         line: "*.*;auth,authpriv.none,local6.none -/var/log/syslog"
         create: no
+        
+    - name: Run expect to wait for a successful PXE boot via out-of-band CIMC
+      ansible.builtin.shell: |
+        sed -i 's/$FileOwner/#$FileOwner/g'
+        sed -i 's/$FileGroup/#$FileGroup/g'
+        sed -i 's/$FileCreateMode/#$FileCreateMode/g'
+        sed -i 's/$DirCreateMode/#$DirCreateMode/g'
+        sed -i 's/$Umask/#$Umask/g'
+        sed -i 's/$PrivDropToUser/#$PrivDropToUse/g'
+        sed -i 's/$PrivDropToGroup/#$PrivDropToGroup/g'
+  
+    - name: Replace a localhost entry searching for a literal string to avoid escaping
+       ansible.builtin.command: systemctl restart rsyslog
 
     
       
