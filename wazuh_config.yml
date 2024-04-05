@@ -17,7 +17,7 @@
         create: yes
         
     - name: Replace a localhost entry searching for a literal string to avoid escaping
-      ansible.builtin.command: sed -i 's/*.*;auth,authpriv.none/#*.*;auth,authpriv.none/g' 
+      ansible.builtin.command: sed -i 's/*.*;auth,authpriv.none/#*.*;auth,authpriv.none/g' /etc/rsyslog.d/50-default.conf
 
     - name: Replace a localhost entry searching for a literal string to avoid escaping
       ansible.builtin.lineinfile:
