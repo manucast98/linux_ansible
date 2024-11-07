@@ -5,4 +5,4 @@
  
   tasks:
     - name: Eliminar archivos "messages"
-      ansible.builtin.command: find /var/log -name "messages-??????????" -delete
+      ansible.builtin.command: find /var/log -name messages-"??????????" -delete
