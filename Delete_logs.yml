@@ -1,0 +1,10 @@
+---
+- name: Eliminar archivos logs
+  hosts: all
+  become: yes
+ 
+  tasks:
+    - name: Eliminar archivos "messages"
+      file:
+        path: /var/log/messages*
+        state: absent
