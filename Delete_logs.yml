@@ -6,5 +6,5 @@
   tasks:
     - name: Eliminar archivos "messages"
       file:
-        path: /var/log/messages*
+        path: /var/log/messages*.*
         state: absent
