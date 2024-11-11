@@ -5,8 +5,8 @@
   tasks:
   - name: Asignar permisos a sophossetup.sh
     file:
-      path: /home/outsupport/sophossetup.sh
+      path: /home/ec2-user/sophossetup.sh
       mode: '0700'
 
   - name: Ejecutar el script para la instalacion de sophos
-    script: /home/outsupport/sophossetup.sh
+    script: /home/ec2-user/sophossetup.sh
