@@ -1,0 +1,15 @@
+---
+- name: Install Apache Web Service
+  hosts: all
+  gather_facts: false
+  tasks:
+  
+    - name: Install the required package
+      ansible.builtin.yum:
+        name: httpd
+        state: latest
+
+    - name: Start the service
+      ansible.builtin.service:
+        name: httpd
+        state: started
