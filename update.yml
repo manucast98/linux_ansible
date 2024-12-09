@@ -1,0 +1,9 @@
+---
+- name: Playbook 
+  hosts: all
+  gather_facts: false
+  tasks:
+        - name: install packages latest version
+          ansible.builtin.yum:
+            name: '*'
+            state: latest
